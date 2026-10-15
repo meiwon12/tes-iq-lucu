@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tes IQ & Logika Dasar</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .header {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #1a73e8;
+            margin-top: 0;
+        }
+        p {
+            color: #5f6368;
+            font-size: 16px;
+        }
+        .soal {
+            font-size: 28px;
+            font-weight: bold;
+            color: #3c4043;
+            margin: 20px 0;
+            background: #e8f0fe;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        input[type="number"] {
+            width: 80%;
+            padding: 12px;
+            font-size: 18px;
+            border: 2px solid #dadce0;
+            border-radius: 10px;
+            text-align: center;
+            outline: none;
+            transition: 0.3s;
+        }
+        input[type="number"]:focus {
+            border-color: #1a73e8;
+        }
+        button {
+            margin-top: 20px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 85%;
+            transition: 0.2s;
+        }
+        button:hover {
+            background: #1557b0;
+        }
+        .hasil-zonk {
+            color: #d93025;
+            font-weight: bold;
+            animation: guncang 0.3s ease-in-out;
+        }
+        @keyframes guncang {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box" id="konten">
+        <div class="header">🧠</div>
+        <h2>Uji Kecerdasan Otak v2.1</h2>
+        <p>Jawab pertanyaan matematika dasar di bawah ini untuk mengukur skor IQ Anda:</p>
+        
+        <div class="soal">1 + 1 = ... ?</div>
+        
+        <input type="number" id="jawaban" placeholder="Masukkan jawaban Anda">
+        <br>
+        <button onclick="cekJawaban()">Kirim Jawaban</button>
+    </div>
+
+    <script>
+        let percakapan = 0;
+
+        function cekJawaban() {
+            const input = document.getElementById('jawaban').value;
+            const wadah = document.getElementById('konten');
+
+            if (input === "") {
+                alert("Jawab dulu jir, jangan dikosongin wkwkw! 😂");
+                return;
+            }
+
+            percakapan++;
+
+            if (percakapan === 1) {
+                // Percobaan pertama: Disalahkan secara paksa
+                wadah.innerHTML = `
+                    <div class="header">❌</div>
+                    <h2 class="hasil-zonk">JAWABAN SALAH!</h2>
+                    <p>Masa 1 + 1 hasilnya ${input}... Yang bener aja?!</p>
+                    <p style="color: #3c4043; font-weight: bold;">Coba sekali lagi, kasih kesempatan terakhir nih:</p>
+                    <div class="soal">1 + 1 = ... ?</div>
+                    <input type="number" id="jawaban" placeholder="Pikir pake logika ya wkwk ...">
+                    <br>
+                    <button onclick="cekJawaban()">Kirim Ulang</button>
+                `;
+            } else {
+                // Percobaan kedua: Vonis IQ Minus yang lucu
+                wadah.innerHTML = `
+                    <div class="header">🤯</div>
+                    <h1 style="color: #d93025; margin-bottom: 5px;">SKOR IQ: -150</h1>
+                    <h3 style="color: #3c4043;">Diagnosis: Otak Nge-blank</h3>
+                    <p style="padding: 10px; background: #fce8e6; color: #a51d24; border-radius: 8px; font-size: 15px;">
+                        Berdasarkan kalkulasi server, sistem mendeteksi kamu butuh asupan kopi atau tidur siang secepatnya. 😴
+                    </p>
+                    <p style="color: #9aa0a6; font-size: 12px; margin-top: 25px;">
+                        (Ini cuma website candaan ya! Bagikan ke temanmu yang lain buat seru-seruan! 🤪)
+                    </p>
+                `;
+            }
+        }
+    </script>
+
+</body>
+</html>
